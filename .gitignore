@@ -1,2 +1,13 @@
 .DS_Store
 s03/s03-listas-y-tuplas.py.zip
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
