@@ -30,5 +30,24 @@ def clasifica_linea(linea):
         return "Invalid user"
     return "Otras"
 
+def ip_de(linea):
+    """Devuelve la IP de la línea de log con contraseña fallida."""
+    return linea.split("from ")[1].split(" ")[0]
+
+def cuenta_fallos_por_ip(lineas):
+    """Cuenta los fallos de contraseña por IP."""
+    conteos = {}
+
+    for linea in lineas:
+        if "failed password" in linea.lower():
+            ip = ip_de(linea)
+            conteos[ip] = conteos.get(ip, 0) + 1
+
+    print("\n--- Top 5 de IPs con más Failed password ---")
+
+    return conteos
+
 if __name__ == "__main__":
-    clasifica_linea("Jun 14 00:15:50 srv-web01 sshd[5585]: Accepted publickey for deploy from 192.168.1.20 port 47001 ssh2")
+    print(f"Tipo: {clasifica_linea('Jun 14 00:15:50 srv-web01 sshd[5585]: Accepted publickey for deploy from 192.168.1.20 port 47001 ssh2')}")
+    print(f"IP: {ip_de('Jun 14 00:15:50 srv-web01 sshd[5585]: Failed password for invalid user admin from 192.168.1.20 port 47001 ssh2')}")
+    cuenta_fallos_por_ip(['Jun 14 00:15:50 srv-web01 sshd[5585]: Failed password for invalid user admin from 192.168.1.20 port 47001 ssh2'])

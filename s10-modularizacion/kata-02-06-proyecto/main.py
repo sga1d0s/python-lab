@@ -5,7 +5,7 @@ from pathlib import Path
 
 from alertas import clasifica_alerta
 from formato import formatea_bytes
-from logs import cuenta_por_tipo
+from logs import cuenta_fallos_por_ip, cuenta_por_tipo
 from validaciones import valida_ip
 
 lineas = Path("datos/auth.log").read_text().splitlines()
@@ -63,5 +63,6 @@ def genera_informe(servidores):
 if __name__ == "__main__":
     genera_informe(servidores)
     cuenta_por_tipo(lineas)
-
-print("\n--- Top 5 de IPs con más Failed password ---")
+    
+    for ip, cantidad in list(cuenta_fallos_por_ip(lineas).items())[:5]:
+        print(f"{ip}: {cantidad}")
