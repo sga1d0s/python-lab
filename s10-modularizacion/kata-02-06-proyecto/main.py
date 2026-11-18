@@ -4,11 +4,8 @@ print("-------------------------------\n")
 from pathlib import Path
 
 from alertas import clasifica_alerta
-from formato import formatea_bytes
+from informe import texto_informe
 from logs import cuenta_fallos_por_ip, cuenta_por_tipo
-from validaciones import valida_ip
-
-lineas = Path("datos/auth.log").read_text().splitlines()
 
 servidores = [
     {
@@ -42,27 +39,22 @@ contador_estados = {"OK": 0, "WARNING": 0, "CRITICAL": 0}
 def genera_informe(servidores):
     """Genera un informe de los servidores."""
     for servidor in servidores:
-        ip_valida = valida_ip(servidor["ip"])
         estado = clasifica_alerta(servidor["cpu"], servidor["ram"], servidor["disco"])
-        espacio = formatea_bytes(servidor["espacio_usado"])
         contador_estados[estado] = contador_estados[estado] + 1
 
-        if ip_valida:
-            etiqueta_ip = "válida"
-        else:
-            etiqueta_ip = "INVÁLIDA"
 
-        print(
-            f"{servidor['nombre']} ({servidor['ip']}, {etiqueta_ip}): estado={estado}, espacio_usado={espacio}"
-        )
-
-    print("\n--- Resumen ---")
-    for estado, cantidad in contador_estados.items():
-        print(f"{estado}: {cantidad}")
+    return contador_estados
 
 if __name__ == "__main__":
-    genera_informe(servidores)
-    cuenta_por_tipo(lineas)
-    
-    for ip, cantidad in list(cuenta_fallos_por_ip(lineas).items())[:5]:
-        print(f"{ip}: {cantidad}")
+    lineas = Path("datos/auth.log").read_text().splitlines()
+
+    estados = genera_informe(servidores)
+    por_tipo = cuenta_por_tipo(lineas)
+    fallos = cuenta_fallos_por_ip(lineas)
+    top_ips = sorted(fallos.items(), key=lambda par: par[1], reverse=True)[:5]
+
+    texto = texto_informe(estados, por_tipo, top_ips)
+
+    Path("salida").mkdir(exist_ok=True)
+    Path("salida/informe.txt").write_text(texto, encoding="utf-8")
+    print(texto, end="")

@@ -11,12 +11,7 @@ def cuenta_por_tipo(lineas):
         tipo = clasifica_linea(linea)
         conteos[tipo] += 1
 
-    print("\n--- auth.log ---")
-
-    for tipo, cantidad in conteos.items():
-        print(f"{tipo}: {cantidad}")
-        
-    print(f"Total: {len(lineas)}")
+    return conteos
 
 
 def clasifica_linea(linea):
@@ -42,8 +37,6 @@ def cuenta_fallos_por_ip(lineas):
         if "failed password" in linea.lower():
             ip = ip_de(linea)
             conteos[ip] = conteos.get(ip, 0) + 1
-
-    print("\n--- Top 5 de IPs con más Failed password ---")
 
     return conteos
 

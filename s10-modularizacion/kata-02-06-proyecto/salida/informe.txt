@@ -1,0 +1,19 @@
+=== Informe del parque ===
+
+Servidores por estado:
+  OK: 1
+  WARNING: 1
+  CRITICAL: 1
+
+Líneas del log por tipo:
+  Failed password: 294
+  Accepted: 166
+  Invalid user: 140
+  Otras: 0
+
+Top 5 de IPs con más Failed password:
+  165.71.109.230: 33
+  248.55.220.57: 31
+  69.167.105.132: 30
+  42.219.147.200: 29
+  197.175.3.122: 29
