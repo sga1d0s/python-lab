@@ -1,0 +1,4 @@
+2026-11-24 00:02:57,418 INFO leído /Users/sgaldos/PROJECTS/python-lab/s12-logging/s10-endurecidos/datos/auth.log: 600 líneas
+2026-11-24 00:02:57,418 WARNING srv-db01 en estado CRITICAL
+2026-11-24 00:02:57,418 WARNING srv-bck01 en estado WARNING
+2026-11-24 00:02:57,418 INFO informe escrito; IP con más fallos: 165.71.109.230 (33)

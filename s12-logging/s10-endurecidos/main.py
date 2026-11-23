@@ -1,3 +1,4 @@
+import logging
 import sys
 from pathlib import Path
 
@@ -43,6 +44,10 @@ def genera_informe(servidores):
     for servidor in servidores:
         estado = clasifica_alerta(servidor["cpu"], servidor["ram"], servidor["disco"])
         contadores[estado] += 1
+        # Registrar los estados que requieren atención con nivel WARNING.
+        if estado != "OK":
+            # logging sustituye cada %s por el argumento correspondiente.
+            logging.warning("%s en estado %s", servidor["nombre"], estado)
 
         try:
             valida_ip(servidor["ip"])
@@ -61,6 +66,17 @@ def genera_informe(servidores):
 
 
 if __name__ == "__main__":
+    # Crear la carpeta antes de que logging abra el fichero de registro.
+    salida = Path(__file__).resolve().parent / "salida"
+    salida.mkdir(exist_ok=True)
+    # Guardar el registro de ejecución con fecha, hora, nivel y mensaje.
+    logging.basicConfig(
+        filename=salida / "informe.log",
+        filemode="w",  # Sobrescribir el registro en cada ejecución.
+        level=logging.INFO,  # Incluir INFO y niveles superiores (WARNING, ERROR...).
+        format="%(asctime)s %(levelname)s %(message)s",
+    )
+
     # Leer primero: si falta el log, aún no hemos impreso nada.
     ruta = (
         Path(sys.argv[1])
@@ -73,6 +89,9 @@ if __name__ == "__main__":
         print(f"error: no existe el fichero {ruta}", file=sys.stderr)
         sys.exit(1)
 
+    # Dejar constancia del fichero leído y del número de líneas procesadas.
+    logging.info("leído %s: %s líneas", ruta, len(lineas))
+
     estados, detalles = genera_informe(servidores)
     por_tipo = cuenta_por_tipo(lineas)
     fallos = cuenta_fallos_por_ip(lineas)
@@ -81,7 +100,10 @@ if __name__ == "__main__":
     texto = "\n".join(detalles) + "\n\n"
     texto += texto_informe(estados, por_tipo, top_ips)
 
-    salida = Path(__file__).resolve().parent / "salida"
-    salida.mkdir(exist_ok=True)
     (salida / "informe.txt").write_text(texto, encoding="utf-8")
     print(texto, end="")
+    # El ranking está ordenado de mayor a menor: la primera IP tiene más fallos.
+    # Este acceso presupone que hay al menos una IP con fallos.
+    ip, veces = top_ips[0]
+    # Confirmar la escritura del informe y registrar la IP con más fallos.
+    logging.info("informe escrito; IP con más fallos: %s (%s)", ip, veces)
