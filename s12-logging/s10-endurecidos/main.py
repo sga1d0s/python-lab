@@ -86,6 +86,8 @@ if __name__ == "__main__":
     try:
         lineas = ruta.read_text(encoding="utf-8").splitlines()
     except FileNotFoundError:
+        # Registrar el motivo de la parada antes de avisar por stderr y salir.
+        logging.error("no existe el fichero %s", ruta)
         print(f"error: no existe el fichero {ruta}", file=sys.stderr)
         sys.exit(1)
 
