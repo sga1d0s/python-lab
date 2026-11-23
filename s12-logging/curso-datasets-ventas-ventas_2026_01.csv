@@ -1,0 +1,48 @@
+fecha;producto;unidades;precio_unitario;comercial
+2026-01-13;SAI 900VA;9;129,00;p.alonso
+2026-01-02;"Portátil 15""";12;649,00;j.fernandez
+2026-01-03;Switch 8 puertos;7;59,90;l.martin
+2026-01-19;"Monitor 27""";9;189,50;m.garcia
+2026-01-08;Teclado mecánico;12;95,00;p.alonso
+2026-01-09;"Portátil 15""";2;649,00;l.martin
+2026-01-18;"Portátil 15""";3;649,00;l.martin
+2026-01-01;Teclado mecánico;10;95,00;j.fernandez
+2026-01-25;SAI 900VA;2;129,00;l.martin
+2026-01-06;Teclado mecánico;10;95,00;p.alonso
+2026-01-22;Disco SSD 1TB;6;89,00;p.alonso
+2026-01-25;Dock USB-C;12;79,90;m.garcia
+2026-01-17;Webcam HD;1;45,00;m.garcia
+2026-01-14;Teclado mecánico;2;95,00;l.martin
+2026-01-20;SAI 900VA;6;129,00;m.garcia
+2026-01-21;Ratón inalámbrico;8;29,90;p.alonso
+2026-01-08;Webcam HD;9;45,00;p.alonso
+2026-01-14;Dock USB-C;11;79,90;p.alonso
+2026-01-03;Ratón inalámbrico;4;29,90;m.garcia
+2026-01-03;Ratón inalámbrico;3;29,90;p.alonso
+2026-01-23;Dock USB-C;12;79,90;p.alonso
+2026-01-11;Webcam HD;2;45,00;m.garcia
+2026-01-01;Ratón inalámbrico;8;29,90;l.martin
+2026-01-25;Ratón inalámbrico;2;29,90;j.fernandez
+2026-01-03;Dock USB-C;7;79,90;p.alonso
+2026-01-18;Disco SSD 1TB;9;89,00;p.alonso
+2026-01-04;"Portátil 15""";2;649,00;l.martin
+2026-01-18;"Monitor 27""";10;189,50;l.martin
+2026-01-28;SAI 900VA;1;129,00;l.martin
+2026-01-14;SAI 900VA;2;129,00;j.fernandez
+2026-01-19;Disco SSD 1TB;3;89,00;p.alonso
+2026-01-06;Dock USB-C;5;79,90;l.martin
+2026-01-09;Switch 8 puertos;3;59,90;m.garcia
+2026-01-06;SAI 900VA;5;129,00;p.alonso
+2026-01-10;Switch 8 puertos;2;59,90;l.martin
+2026-01-09;Teclado mecánico;12;95,00;p.alonso
+2026-01-20;Teclado mecánico;8;95,00;m.garcia
+2026-01-05;Ratón inalámbrico;1;29,90;p.alonso
+2026-01-11;SAI 900VA;6;129,00;p.alonso
+2026-01-11;SAI 900VA;11;129,00;j.fernandez
+2026-01-10;Webcam HD;10;45,00;j.fernandez
+2026-01-16;Webcam HD;3;45,00;p.alonso
+2026-01-11;Ratón inalámbrico;12;29,90;p.alonso
+2026-01-19;Teclado mecánico;6;95,00;p.alonso
+2026-01-09;SAI 900VA;6;129,00;m.garcia
+2026-01-19;Teclado mecánico;10;95,00;j.fernandez
+2026-01-22;Disco SSD 1TB;1;89,00;p.alonso
