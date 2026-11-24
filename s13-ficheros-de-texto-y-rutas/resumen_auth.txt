@@ -1,0 +1,4 @@
+Resumen de auth.log
+Líneas totales: 600
+Accesos aceptados: 166
+Intentos fallidos: 294
